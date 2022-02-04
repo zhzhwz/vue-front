@@ -5,7 +5,6 @@
     :key="file.filename"
     :filename="file.filename"
   >
-
   </file-list-entry>
 </template>
 
