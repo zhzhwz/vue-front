@@ -11,6 +11,7 @@
 
 <script>
 import axios from 'axios';
+import FileListEntry from './components/FileListEntry.vue';
 
 export default {
   name: 'App',
