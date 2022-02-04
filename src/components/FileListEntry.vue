@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click.native="download">download</button> {{ filename }}
+        <button @click="download">download</button> {{ filename }}
     </div>
 </template>
 
