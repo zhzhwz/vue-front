@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button>download</button> {{ filename }}
+        <button @click="click">download</button> {{ filename }}
     </div>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
   name: 'HelloWorld',
   props: {
-    filename: String
+    filename: String,
+    click: Function,
   }
 }
 </script>
