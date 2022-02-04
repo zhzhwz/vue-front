@@ -14,7 +14,14 @@ export default {
     methods: {
         download() {
             const url = '/api/fileDownload';
-            axios.post(url, {filename: this.filename}, {responseType: 'blob'})
+            axios({
+                method: 'post',
+                url: '/api/fileDownload',
+                data: {
+                    filename: this.filename,
+                },
+                responseType: 'blob',
+            })
             .then((res) => {
                 const { data, headers } = res
                 const fileName = headers['content-disposition'].replace(/\w+;filename=(.*)/, '$1')
