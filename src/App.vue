@@ -2,8 +2,8 @@
   <h1>Hello, pipiwu!</h1>
   <file-list-entry
     v-for="file in files"
-    :key="file.name"
-    :filename="file.name"
+    :key="file.filename"
+    :filename="file.filename"
   >
 
   </file-list-entry>
