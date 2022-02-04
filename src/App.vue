@@ -1,5 +1,5 @@
 <template>
-  <h1>Hello, pipiwu!</h1>
+  <h1>Hello, files!</h1>
   <file-list-entry
     v-for="file in files"
     :key="file.filename"
