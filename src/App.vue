@@ -4,7 +4,6 @@
     v-for="file in files"
     :key="file.filename"
     :filename="file.filename"
-    :click="download"
   >
 
   </file-list-entry>
@@ -23,11 +22,6 @@ export default {
     return {
       files: [],
     }
-  },
-  methods: {
-    click(event) {
-      console.log(event.key);
-    },
   },
   mounted() {
     axios.get('/api/fileName').then(response => {
