@@ -13,7 +13,7 @@ export default {
     },
     methods: {
         download() {
-            const url = 'http://zhzhwz.cn/api/fileDownload';
+            const url = '/api/fileDownload';
             axios.post(url, {filename: this.filename}, {responseType: 'blob'})
             .then((res) => {
                 const { data, headers } = res
