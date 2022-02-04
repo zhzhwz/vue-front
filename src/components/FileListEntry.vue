@@ -24,7 +24,7 @@ export default {
             .then((res) => {
                 const { data, headers } = res
                 console.log(headers['content-disposition'])
-                const fileName = headers['content-disposition'].replace(/\w+;\s*filename=\"?(.*)\"?/, '$1')
+                const fileName = headers['content-disposition'].replace(/\w+;\s*filename="(.*)"/, '$1')
                 const blob = new Blob([data], {type: headers['content-type']})
                 let dom = document.createElement('a')
                 let url = window.URL.createObjectURL(blob)
