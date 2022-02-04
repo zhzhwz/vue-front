@@ -1,10 +1,12 @@
 <template>
   <h1>Hello, pipiwu!</h1>
-  <ul>
-    <li v-for="user in users" :key="user.id">
-      {{ user.name }}
-    </li>
-  </ul>
+  <file-list-entry
+    v-for="file in files"
+    :key="file.name"
+    :filename="file.name"
+  >
+
+  </file-list-entry>
 </template>
 
 <script>
@@ -12,14 +14,17 @@ import axios from 'axios';
 
 export default {
   name: 'App',
+  components: {
+    FileListEntry
+  },
   data() {
     return {
-      users: [],
+      files: [],
     }
   },
   mounted() {
-    axios.get('/api/users').then(response => {
-      this.users = response.data;
+    axios.get('/api/fileName').then(response => {
+      this.files = response.data;
     });
   },
 }
