@@ -1,7 +1,6 @@
 <template>
     <div>
         <button @click="download">download</button> {{ filename }}
-        {{ message }}
     </div>
 </template>
 
@@ -14,7 +13,6 @@ export default {
     },
     methods: {
         download() {
-            const url = '/api/fileDownload';
             axios({
                 method: 'post',
                 url: '/api/fileDownload',
@@ -25,7 +23,7 @@ export default {
             })
             .then((res) => {
                 const { data, headers } = res
-                this.message = headers['content-disposition']
+                console.log(headers['content-disposition'])
                 const fileName = headers['content-disposition'].replace(/\w+;filename=(.*)/, '$1')
                 const blob = new Blob([data], {type: headers['content-type']})
                 let dom = document.createElement('a')
@@ -40,11 +38,6 @@ export default {
             }).catch((err) => {console.log('download error: ' + err);})
         },
     },
-    data() {
-        return {
-            message: '',
-        }
-    }
 }
 </script>
 
