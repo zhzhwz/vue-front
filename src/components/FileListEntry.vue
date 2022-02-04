@@ -1,5 +1,7 @@
 <template>
-    <button>download</button> {{ filename }}<br>
+    <div>
+        <button>download</button> {{ filename }}
+    </div>
 </template>
 
 <script>
