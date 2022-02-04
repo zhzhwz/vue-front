@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: 'FileListEntry',
     props: {
@@ -12,7 +13,6 @@ export default {
     },
     methods: {
         download() {
-            import axios from 'axios';
             const url = 'http://zhzhwz.cn/api/fileDownload';
             axios.post(url, {filename: this.filename}, {responseType: 'blob'})
             .then((res) => {
