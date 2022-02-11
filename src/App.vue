@@ -1,10 +1,11 @@
 <template>
-  <h1>Hello, files!</h1>
-  <ul>
-    <li v-for="user in users" :key="user.id">
-      {{ user.name }}
-    </li>
-  </ul>
+    <h1>Hello, files!</h1>
+    <file-list-entry
+        v-for="file in files"
+        :key="file.filename"
+        :filename="file.filename"
+    >
+    </file-list-entry>
   <form method="POST" action="/apps/rel" encType="multipart/form-data" name="form">
     <input id="inputFile" type="file"
            accept="application/vnd.ms-excel|xls"
@@ -15,14 +16,18 @@
 
 <script>
 import axios from 'axios';
+import FileListEntry from './components/FileListEntry.vue';
 
 export default {
-  name: 'App',
-  data() {
-    return {
-      users: [],
-    }
-  },
+    name: 'App',
+    components: {
+        FileListEntry
+    },
+    data() {
+        return {
+            files: [],
+        }
+    },
   methods: {
     onChange() {
       console.log("changed!");
@@ -31,11 +36,11 @@ export default {
       console.log("clicked!");
     }
   },
-  mounted() {
-    axios.get('/api/users').then(response => {
-      this.users = response.data;
-    });
-  },
+      mounted() {
+        axios.get('/api/fileName').then(response => {
+            this.files = response.data;
+        });
+    },
 }
 </script>
 
