@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="download">下载</button> {{ filename }}
+        <button @click="download">下载</button> {{ filename }} ({{ filesize }})
     </div>
 </template>
 
@@ -10,6 +10,7 @@ export default {
     name: 'FileListEntry',
     props: {
         filename: String,
+        filesize: String,
     },
     methods: {
         download() {
