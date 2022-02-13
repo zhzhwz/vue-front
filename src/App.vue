@@ -1,9 +1,9 @@
 <template>
     <h1>Zh Share</h1>
     <file-list-entry
-        v-for="file in files"
-        :key="file.filename"
-        :filename="file.filename"
+        v-for="fileName in fileNames"
+        :key="fileName"
+        :filename="fileName"
     >
     </file-list-entry>
   <form method="POST" action="/api/file/upload" encType="multipart/form-data" name="form">
@@ -25,7 +25,7 @@ export default {
     },
     data() {
         return {
-            files: [],
+            fileNames: [],
         }
     },
   methods: {
@@ -34,7 +34,7 @@ export default {
   },
       mounted() {
         axios.get('/api/file/name').then(response => {
-            this.files = response.data;
+            this.fileNames = response.data.fileNames;
         });
     },
 }
