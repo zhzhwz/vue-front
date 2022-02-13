@@ -16,7 +16,7 @@ module.exports = {
         config
         .plugin('html')
         .tap(args => {
-            args[0].title = 'ZhShare'
+            args[0].title = 'Zh Share'
             return args
         })
     }
