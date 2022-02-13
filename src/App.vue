@@ -6,12 +6,18 @@
         :filename="fileName"
     >
     </file-list-entry>
-  <form method="POST" action="/api/file/upload" encType="multipart/form-data" name="form">
-    <input id="inputFile" type="file"
-           accept="application/vnd.ms-excel|xls"
-           name="inputFile" />
-    <button @click="onClick">Upload</button>
-  </form>
+    <input
+        id="inputFile"
+        type="file"
+        accept="*"
+        name="inputFile"
+        @change="uploadFile"
+        v-show="false"
+        ref="upload"
+    >
+    <button
+        @click="$refs.upload.click"
+    >上传文件</button>
 </template>
 
 <script>
@@ -28,14 +34,32 @@ export default {
             fileNames: [],
         }
     },
-  methods: {
-    onClick() {
-    }
-  },
-      mounted() {
-        axios.get('/api/file/name').then(response => {
-            this.fileNames = response.data.fileNames;
-        });
+    methods: {
+        loadFileNames() {
+            axios.get('/api/file/name').then(response => {
+                this.fileNames = response.data.fileNames;
+            });
+        },
+        uploadFile(e) {
+            if (e.target.files.length === 0) {
+                return ;
+            }
+            const formData = new FormData();
+            formData.append('inputFile', e.target.files[0]);
+            axios({
+                url: "/api/file/upload",
+                method: "post",
+                file: e.target.files[0],
+                data: formData,
+                headers: { 'Content-Type': 'multipart/form-data'},
+            }).then(() => {
+                this.loadFileNames();
+                e.target.value = '';
+            });
+        }
+    },
+    mounted() {
+        this.loadFileNames();
     },
 }
 </script>
