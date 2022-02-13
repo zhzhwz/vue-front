@@ -15,7 +15,7 @@ export default {
         download() {
             axios({
                 method: 'post',
-                url: '/api/fileDownload',
+                url: '/api/file/download',
                 data: {
                     filename: this.filename,
                 },
